@@ -1,15 +1,12 @@
 <script setup>
-import Layout from "../Shared/Layout.vue";
+//import Layout from "../Shared/Layout.vue";//imported as default from app.js
 
 defineProps({
 
-})
+});
+//defineOptions({ layout: Layout });
 </script>
 
 <template>
-
-    <Layout>
         <h1 class="text-2xl font-bold">Home</h1>
-    </Layout>
-
 </template>
