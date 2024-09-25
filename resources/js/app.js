@@ -1,7 +1,7 @@
 // import './bootstrap';
 import '../css/app.css';
 import { createApp, h } from 'vue'
-import { createInertiaApp, Link } from '@inertiajs/vue3'
+import { createInertiaApp, Link, Head } from '@inertiajs/vue3'
 import Layout from './Shared/Layout.vue';
 
 createInertiaApp({
@@ -17,6 +17,7 @@ createInertiaApp({
         createApp({ render: () => h(App, props) })
             .use(plugin)
             .component('Link', Link) //register component globally
+            .component('Head', Head) //register component globally
             .mount(el)
     },
     progress: {
@@ -32,5 +33,8 @@ createInertiaApp({
         // Whether the NProgress spinner will be shown...
         showSpinner: true,
     },
+
+    title: title => `My App - ${title}`, //defines a template for the head title with the {title} provided in each page
+
     // ...
 })
