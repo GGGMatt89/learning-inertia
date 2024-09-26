@@ -12,7 +12,8 @@ import throttle from 'lodash/throttle'; //to execute a method at least once ever
 let props = defineProps({
     time: String,
     users: Object,
-    filters: Object
+    filters: Object,
+    can: Object
 
 });
 
@@ -35,7 +36,10 @@ watch(search, throttle(function (value) {
     </Head>
 
     <div class="flex justify-between mb-6">
-        <h1 class="text-2xl font-bold">Users</h1>
+        <div class="flex items-center">
+            <h1 class="text-2xl font-bold">Users</h1>
+            <Link v-if="can.createUser" href="/users/create" class="text-blue-500 text-sm ml-3">New User</Link>
+        </div>
         <input v-model="search" type="text" placeholder="Search..." class="border px-2 rounded-lg "/>
     </div>
 
@@ -46,7 +50,7 @@ watch(search, throttle(function (value) {
                     <p class="text-sm font-semibold leading-6 text-gray-900">{{user.name}}</p>
                 </div>
             </div>
-            <div class="hidden shrink-0 sm:flex sm:flex-col sm:items-end">
+            <div v-if="user.can.edit" class="hidden shrink-0 sm:flex sm:flex-col sm:items-end">
                 <Link :href="`/users/${user.id}/edit`" class="text-sm text-indigo-600 hover:text-indigo-900">Edit</Link>
             </div>
         </li>
@@ -57,7 +61,7 @@ watch(search, throttle(function (value) {
         <div style="margin-top: 800px">
             <p>The current time is: {{ time }}</p>
         </div>
-        <Link href="/users" class="text-blue-500" preserve-scroll>Refresh</Link>
+        <Link href="/Index" class="text-blue-500" preserve-scroll>Refresh</Link>
         <!--    preserving the scroll vertical position of the page when clicking on this link
         EXAMPLES: like button in posts, table layouts setting filters, etc.-->
 </template>
