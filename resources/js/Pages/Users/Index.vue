@@ -46,9 +46,11 @@ watch(search, throttle(function (value) {
     <ul role="list" class="divide-y divide-gray-100">
         <li class="flex justify-between gap-x-6 py-5" v-for="user in users.data" :key="user.id">
             <div class="flex min-w-0 gap-x-4">
-                <div class="min-w-0 flex-auto">
-                    <p class="text-sm font-semibold leading-6 text-gray-900">{{user.name}}</p>
-                </div>
+                <Link :href="`/users/${user.id}`">
+                    <div class="min-w-0 flex-auto">
+                        <p class="text-sm font-semibold leading-6 text-gray-900">{{user.name}}</p>
+                    </div>
+                </Link>
             </div>
             <div v-if="user.can.edit" class="hidden shrink-0 sm:flex sm:flex-col sm:items-end">
                 <Link :href="`/users/${user.id}/edit`" class="text-sm text-indigo-600 hover:text-indigo-900">Edit</Link>
@@ -56,7 +58,7 @@ watch(search, throttle(function (value) {
         </li>
     </ul>
 
-<Paginator :links="users.links" class="mt-6"></Paginator>
+<Paginator :links="users.meta.links" class="mt-6"></Paginator>
 
         <div style="margin-top: 800px">
             <p>The current time is: {{ time }}</p>
