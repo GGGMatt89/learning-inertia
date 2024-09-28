@@ -8,6 +8,7 @@
     "devDependencies": {
         "autoprefixer": "^10.4.20",
         "axios": "^1.7.4",
+        "highlight.js": "^11.10.0",
         "laravel-vite-plugin": "^1.0",
         "lodash": "^4.17.21",
         "postcss": "^8.4.47",

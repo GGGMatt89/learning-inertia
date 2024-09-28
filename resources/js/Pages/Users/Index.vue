@@ -7,7 +7,8 @@ import { router } from '@inertiajs/vue3';
 import Paginator from "@/Shared/Paginator.vue";
 import throttle from 'lodash/throttle'; //to execute a method at least once every x ms
 //import debounce from 'lodash/debounce'; //to execute a method once after x ms -> example: one single request when I stop typing in the search input for 500 ms
-
+import { onMounted } from 'vue';
+import {useCurrentUser} from "@/Composables/useCurrentUser.js";
 
 let props = defineProps({
     time: String,
@@ -28,6 +29,12 @@ watch(search, throttle(function (value) {
 
 //defineOptions({ layout: Layout });
 
+onMounted(() => {
+    let user = useCurrentUser();
+    console.log(user.follows({}));
+    console.log(user.isALifer());
+
+});
 </script>
 
 <template>
